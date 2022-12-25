@@ -1,0 +1,8 @@
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.csproj.AssemblyReference.cache
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.GeneratedMSBuildEditorConfig.editorconfig
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.AssemblyInfoInputs.cache
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.AssemblyInfo.cs
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.csproj.CoreCompileInputs.cache
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.MvcApplicationPartsAssemblyInfo.cache
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.RazorAssemblyInfo.cache
+E:\Terraform\UDEMY COURSES\Sub-Course-3\Code\22. GitHub_Repository\GitHub\AzureWebApp\obj\Debug\netcoreapp3.1\AzureWebApp.RazorAssemblyInfo.cs
