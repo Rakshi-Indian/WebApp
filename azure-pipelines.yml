@@ -1,74 +1,60 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
+---
 trigger:
-- main
-
+  - main
 stages:
- - stage: Build
-   jobs:
-   - job: Build
-
+  - stage: Build
+    jobs:
+      - job: Build
 pool:
-  vmImage: 'windows-2022'
-
+  vmImage: windows-2022
 variables:
-   BuildConfiguration: 'release'
-   buildPlatform: 'any cpu'
-
+  BuildConfiguration: release
+  buildPlatform: any cpu
 steps:
-
-- task: NuGetToolInstaller@1
-  inputs:
-    versionSpec: '>=6.1.0'
-
-- task: NuGetCommand@2
-  inputs:
-    command: 'restore'
-    restoreSolution: 'AzureWebApp.sln'
-    feedsToUse: 'select'
-
-- task: VSBuild@1
-  inputs:
-    solution: 'AzureWebApp.sln'
-    vsVersion: '17.0'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactstagingdirectory)\\"'
-    platform: '$(BuildPlatform)'
-    configuration: '$(BuildConfiguration)'
-
-- task: PublishSymbols@2
-  inputs:
-    SearchPattern: '**/bin/**/*.pdb'
-    PublishSymbols: false
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'drop'
-    publishLocation: 'Container'
-
-- stage: Deploy
-  jobs:
-   - job: Deploy
-     pool:
-       vmImage: 'windows-2019'
-
-- task: DownloadBuildArtifacts@1
-  inputs:
-    buildType: 'current'
-    downloadType: 'single'
-    artifactName: 'drop'
-    downloadPath: '$(System.ArtifactsDirectory)'
-
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Free Trial (ff7904bb-bcc0-4aef-8f22-bbe7d59c566b)'
-    appType: 'webApp'
-    WebAppName: '$(webappname)'
-    deployToSlotOrASE: true
-    ResourceGroupName: 'app-grp'
-    SlotName: 'staging-slot'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/drop/*.zip'
+  - task: NuGetToolInstaller@1
+    inputs:
+      versionSpec: ">=6.1.0"
+  - task: NuGetCommand@2
+    inputs:
+      command: restore
+      restoreSolution: AzureWebApp.sln
+      feedsToUse: select
+  - task: VSBuild@1
+    inputs:
+      solution: AzureWebApp.sln
+      vsVersion: "17.0"
+      msbuildArgs: /p:DeployOnBuild=true /p:WebPublishMethod=Package
+        /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true
+        /p:PackageLocation="$(build.artifactstagingdirectory)\\"
+      platform: $(BuildPlatform)
+      configuration: $(BuildConfiguration)
+  - task: PublishSymbols@2
+    inputs:
+      SearchPattern: "**/bin/**/*.pdb"
+      PublishSymbols: false
+  - task: PublishBuildArtifacts@1
+    inputs:
+      PathtoPublish: $(Build.ArtifactStagingDirectory)
+      ArtifactName: drop
+      publishLocation: Container
+  - stage: Deploy
+    jobs:
+      - job: Deploy
+        pool:
+          vmImage: windows-2019
+  - task: DownloadBuildArtifacts@1
+    inputs:
+      buildType: current
+      downloadType: single
+      artifactName: drop
+      downloadPath: $(System.ArtifactsDirectory)
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: AzureRM
+      azureSubscription: Free Trial (ff7904bb-bcc0-4aef-8f22-bbe7d59c566b)
+      appType: webApp
+      WebAppName: $(webappname)
+      deployToSlotOrASE: true
+      ResourceGroupName: app-grp
+      SlotName: staging-slot
+      packageForLinux: $(System.DefaultWorkingDirectory)/drop/*.zip
